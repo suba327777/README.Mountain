@@ -1,0 +1,12 @@
+name: "μ-lab hackathon"
+description: "This action runs a μ-lab hackathon"
+inputs:
+  user-name:
+    description: "user name input"
+    required: true
+    default: "niwaniwa"
+runs:
+  using: "composite"
+  steps:
+    - run: go run ${{ github.action_path }}/main.go ${{ inputs.test-input }}
+      shell: bash
