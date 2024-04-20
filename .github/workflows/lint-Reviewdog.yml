@@ -18,4 +18,4 @@ jobs:
           go_version: ^1.21
           reporter: github-pr-review
           level: warning
-          golangci_lint_flags: "--config=ci.yml"
+          golangci_lint_flags: "--config=.golangci.yml"
