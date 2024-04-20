@@ -3,26 +3,31 @@ package main
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/gin-gonic/gin"
 )
 
 func getHello() string {
 	return "hello world"
 }
 
-func mountainHandler(w http.ResponseWriter, r *http.Request) {
-	username := r.URL.Query().Get("username")
+func mountainHandler(c *gin.Context) {
+	username := c.Query("username")
 	if username == "" {
-		username = "Anonymous"
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Username is required"})
+		return
 	}
 
-	// レスポンスを返す
-	fmt.Fprintf(w, "Hello, %s! The server is healthy.", username)
+	c.String(200, "Hello %s!", username)
 }
 
 func main() {
 	fmt.Println(getHello())
-	http.HandleFunc("/mountain", mountainHandler)
+
+	r := gin.Default()
+
+	r.GET("/mountain", mountainHandler)
 
 	fmt.Println("server is runnning")
-	http.ListenAndServe(":8080", nil)
+	r.Run(":8080")
 }
