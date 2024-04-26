@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"github.com/joho/godotenv"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 )
@@ -15,6 +15,10 @@ func fetchGrass(username string) (string, error) {
 	apiURL := "https://api.github.com/graphql"
 
 	err := godotenv.Load(".env")
+	if err != nil {
+		fmt.Println("Error not found env")
+		return "", err
+	}
 
 	token := os.Getenv("GITHUB_TOKEN")
 
@@ -54,7 +58,7 @@ func fetchGrass(username string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	respBody, err := ioutil.ReadAll(resp.Body)
+	respBody, err := io.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response body:", err)
 		return "", err
