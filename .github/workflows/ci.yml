@@ -26,4 +26,4 @@ jobs:
       - name: Install gofumpt
         run: go install mvdan.cc/gofumpt@latest
       - name: Run format
-        run: gofumpt -w ./...
+        run: gofumpt -l -w .
