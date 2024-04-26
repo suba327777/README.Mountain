@@ -26,33 +26,27 @@ func fetchGrass(username string) (string, error) {
 		}
 	}`, username)
 
-	// リクエストデータをマップに設定
 	requestData := map[string]string{
 		"query": query,
 	}
 
-	// リクエストデータをJSON形式に変換
 	requestBody, err := json.Marshal(requestData)
 	if err != nil {
 		fmt.Println("Error marshalling request data:", err)
 		return "", nil
 	}
 
-	// HTTP POSTリクエストの作成
 	req, err := http.NewRequest("POST", apiURL, bytes.NewBuffer(requestBody))
 	if err != nil {
 		fmt.Println("Error creating HTTP request:", err)
 		return "", err
 	}
 
-	// リクエストヘッダーの設定
 	req.Header.Set("Authorization", "Bearer "+token)
 	req.Header.Set("Content-Type", "application/json")
 
-	// HTTPクライアントの生成
 	client := &http.Client{}
 
-	// HTTPリクエストの送信
 	resp, err := client.Do(req)
 	if err != nil {
 		fmt.Println("Error sending HTTP request:", err)
@@ -60,14 +54,12 @@ func fetchGrass(username string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	// レスポンスの読み取り
 	respBody, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
 		fmt.Println("Error reading response body:", err)
 		return "", err
 	}
 
-	// レスポンスの出力
 	fmt.Println("Response:", string(respBody))
 
 	return string(respBody), nil
