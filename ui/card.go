@@ -16,7 +16,7 @@ func title(username string, mountain string) string {
 	return fmt.Sprintf(`
     <g>
       <g transform="translate(5,8)">%s</g>
-        <text x="40" y="25" font-size="14" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
+        <text x="45" y="26" font-size="16" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
     </g>
     `, mountain, username)
 }
@@ -40,6 +40,17 @@ func leftInfo(width int, tree, climber, Backpack string) string {
   `, tree, width, climber, width, Backpack, width)
 }
 
+func rightInfo(grass string) string {
+	return fmt.Sprintf(`
+  <g>
+    <rect x="175" y="55" width="150" height="130" fill="#141321" rx="5" ry="5" stroke="white" stroke-width="1"/> 
+    <g transform="translate(157 162)">
+      <g>%s</g>
+    </g>
+  </g>
+  `, grass)
+}
+
 func endSVG() string {
 	return `</svg>`
 }
@@ -49,11 +60,13 @@ func GenerateCard(username string) string {
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
-
+	count := 28
+	Grass := generateMountain(count)
 	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
 	svg += title(username, Mountain)
 	svg += leftInfo(width, Tree, Climber, Backpack)
+	svg += rightInfo(Grass)
 
 	svg += endSVG()
 
