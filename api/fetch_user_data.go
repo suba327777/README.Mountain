@@ -3,16 +3,16 @@ package api
 import (
 	"context"
 	"fmt"
-	"github-readme-mountain/object"
 	"os"
 	"time"
+
+	"github-readme-mountain/object"
 
 	"github.com/shurcooL/githubv4"
 	"golang.org/x/oauth2"
 )
 
 func getUserData(username string, from, to time.Time) (object.UserData, error) {
-
 	token := os.Getenv("GITHUB_TOKEN")
 
 	auth := oauth2.StaticTokenSource(
