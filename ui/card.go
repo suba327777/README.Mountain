@@ -9,7 +9,7 @@ func startSVG() string {
 }
 
 func rect(width, height int, bgColor string) string {
-	return fmt.Sprintf(`<rect x="10" y="10" width="%d" height="%d" fill="%s" rx="5" ry="5" stroke="black" stroke-width="2"/>`, width, height, bgColor)
+	return fmt.Sprintf(`<rect x="10" y="10" width="%d" height="%d" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/>`, width, height, bgColor)
 }
 
 func title(username string, mountain string) string {
