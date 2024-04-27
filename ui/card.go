@@ -14,11 +14,11 @@ func rect(width, height int, bgColor string) string {
 
 func title(username string, mountain string) string {
 	return fmt.Sprintf(`
-    <g style="padding: 2em">
-    <text x="0" y="30" font-size="15" dominant-baseline="middle" text-anchor="middle" fill="white">%s's</text>
-    <g transform="translate(130,12)">%s</g>
+    <g>
+      <g transform="translate(5,5)">%s</g>
+        <text x="40" y="23" font-size="14" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
     </g>
-    `, username, mountain)
+    `, mountain, username)
 }
 
 func endSVG() string {
