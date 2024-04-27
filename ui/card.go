@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func startSVG() string {
+func startSVG(width, height int, viewBox string) string {
 	return `<svg xmlns="http://www.w3.org/2000/svg">`
 }
 
@@ -26,15 +26,14 @@ func endSVG() string {
 func GenerateCard(username string) string {
 	width := 340
 	height := 200
+	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
 
-	svg := startSVG()
+	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
 	svg += title(username, Mountain)
 
 	svg += endSVG()
-	fmt.Println(svg)
-	fmt.Println(Mountain)
 
 	return svg
 }
