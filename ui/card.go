@@ -16,7 +16,7 @@ func title(username string, mountain string) string {
 	return fmt.Sprintf(`
     <g>
       <g transform="translate(5,8)">%s</g>
-        <text x="40" y="25" font-size="14" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
+        <text x="45" y="26" font-size="16" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
     </g>
     `, mountain, username)
 }
