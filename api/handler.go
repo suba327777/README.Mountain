@@ -1,9 +1,10 @@
 package api
 
 import (
+	"net/http"
+
 	"github-readme-mountain/ui"
 	"github.com/gin-gonic/gin"
-	"net/http"
 )
 
 func MountainHandler(c *gin.Context) {
@@ -25,5 +26,4 @@ func MountainHandler(c *gin.Context) {
 
 	c.Data(http.StatusOK, "image/svg+xml", []byte(svg))
 	// c.JSON(http.StatusOK, gin.H{"totalCommit": totalCommit})
-
 }

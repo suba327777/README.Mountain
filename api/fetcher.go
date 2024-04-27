@@ -4,14 +4,14 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/joho/godotenv"
 	"io"
 	"net/http"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 func fetchGrass(username string) (string, error) {
-
 	apiURL := "https://api.github.com/graphql"
 
 	err := godotenv.Load(".env")
@@ -67,5 +67,4 @@ func fetchGrass(username string) (string, error) {
 	fmt.Println("Response:", string(respBody))
 
 	return string(respBody), nil
-
 }

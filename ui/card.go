@@ -22,8 +22,8 @@ func title(username string, mountain string) string {
 func endSVG() string {
 	return `</svg>`
 }
-func GenerateCard(username string) string {
 
+func GenerateCard(username string) string {
 	width := 340
 	height := 200
 	bgColor := "#141321"
