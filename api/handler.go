@@ -21,7 +21,7 @@ func MountainHandler(c *gin.Context) {
 
 	print(totalCommit)
 
-	svg := ui.GenerateCard()
+	svg := ui.GenerateCard(username)
 
 	c.Data(http.StatusOK, "image/svg+xml", []byte(svg))
 	// c.JSON(http.StatusOK, gin.H{"totalCommit": totalCommit})
