@@ -4,7 +4,9 @@ import (
 	"fmt"
 
 	"github-readme-mountain/api"
+
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
 
 func getHello() string {
@@ -13,6 +15,12 @@ func getHello() string {
 
 func main() {
 	fmt.Println(getHello())
+
+	err := godotenv.Load(".env")
+
+	if err != nil {
+		fmt.Printf("read error: %v", err)
+	}
 
 	r := gin.Default()
 
