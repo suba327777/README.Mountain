@@ -5,17 +5,19 @@ import (
 )
 
 func startSVG(width, height int, viewBox string) string {
-	return `<svg xmlns="http://www.w3.org/2000/svg">`
+	return fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="%s">`, width, height, viewBox)
 }
 
 func rect(width, height int, bgColor string) string {
-	return fmt.Sprintf(`<rect x="10" y="10" width="%d" height="%d" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/>`, width, height, bgColor)
+	return fmt.Sprintf(`<rect width="%d" height="%d" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/>`, width, height, bgColor)
 }
 
 func title(username string, mountain string) string {
 	return fmt.Sprintf(`
-    <text x="70" y="30" font-size="15" dominant-baseline="middle" text-anchor="middle" fill="white">%s's</text>
+    <g style="padding: 2em">
+    <text x="0" y="30" font-size="15" dominant-baseline="middle" text-anchor="middle" fill="white">%s's</text>
     <g transform="translate(130,12)">%s</g>
+    </g>
     `, username, mountain)
 }
 
