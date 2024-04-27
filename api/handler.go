@@ -18,7 +18,7 @@ func MountainHandler(c *gin.Context) {
 
 	toDate := time.Now()
 	fromDate := toDate.AddDate(0, -1, 0)
-	user, err := GetUserData(username, fromDate, toDate)
+	user, err := getUserData(username, fromDate, toDate)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch GitHub data"})
 		return

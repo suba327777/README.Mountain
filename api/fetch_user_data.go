@@ -11,9 +11,7 @@ import (
 	"golang.org/x/oauth2"
 )
 
-func GetUserData(username string, from, to time.Time) (object.UserData, error) {
-
-	// apiURL := "https://api.github.com/graphql"
+func getUserData(username string, from, to time.Time) (object.UserData, error) {
 
 	token := os.Getenv("GITHUB_TOKEN")
 
