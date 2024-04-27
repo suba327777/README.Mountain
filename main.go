@@ -17,7 +17,6 @@ func main() {
 	fmt.Println(getHello())
 
 	err := godotenv.Load(".env")
-
 	if err != nil {
 		fmt.Printf("read error: %v", err)
 	}
