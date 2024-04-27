@@ -44,7 +44,7 @@ func rightInfo(grass string) string {
 	return fmt.Sprintf(`
   <g>
     <rect x="175" y="55" width="150" height="130" fill="#141321" rx="5" ry="5" stroke="white" stroke-width="1"/> 
-    <g transform="translate(157 162)">
+    <g transform="translate(158 167)">
       <g>%s</g>
     </g>
   </g>
@@ -60,7 +60,7 @@ func GenerateCard(username string) string {
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
-	count := 28
+	count := 31
 	Grass := generateMountain(count)
 	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
