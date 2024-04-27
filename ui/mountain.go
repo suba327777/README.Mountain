@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-//wip 
+// wip
 func mountainColor(todayCommit int) string {
 	var color string
 	if todayCommit >= 20 {
@@ -23,13 +23,12 @@ func mountainColor(todayCommit int) string {
 }
 
 func generateTrianglePath(x, y int) string {
-  return fmt.Sprintf(`<svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" x="%d" y="%d" viewBox="0 0 264.58 264.58">
+	return fmt.Sprintf(`<svg  xmlns="http://www.w3.org/2000/svg" width="25" height="25" x="%d" y="%d" viewBox="0 0 264.58 264.58">
 	  <path transform="matrix(.26458 0 0 .26458 -.001665 0)" d="m500 133c-10 0-20 5-25 15l-375 652c-30 50-25 75 25 75l375-0.26172 375 0.26172c50 0 55-25 25-75l-375-652c-5-10-15-15-25-15z" fill="#ADFF2F" stroke-width="3.7796"/>
-  </svg>`,x,y)
+  </svg>`, x, y)
 }
 
 func generateMountain(count int) string {
-
 	var results strings.Builder
 
 	x := 0
@@ -53,15 +52,15 @@ func generateMountain(count int) string {
 			x -= 70
 			y -= 15
 			results.WriteString(generateTrianglePath(x, y))
-    }else if i == 26 {
-      x -= 50
+		} else if i == 26 {
+			x -= 50
 			y -= 15
 			results.WriteString(generateTrianglePath(x, y))
-    }else if i == 28 {
-      x -= 30
+		} else if i == 28 {
+			x -= 30
 			y -= 15
 			results.WriteString(generateTrianglePath(x, y))
-    }else {
+		} else {
 			results.WriteString(generateTrianglePath(x, y))
 		}
 
