@@ -38,6 +38,9 @@ func GetUserData(username string, from, to time.Time) (object.UserData, error) {
 					}
 				} `graphql:"contributionCalendar"`
 			} `graphql:"contributionsCollection(from: $from, to: $to)"`
+			totalPullRequestContributions       int
+			totalPullRequestReviewContributions int
+			totalRepositoryContributions        int
 		} `graphql:"user(login: $username)"`
 	}
 
@@ -61,7 +64,10 @@ func GetUserData(username string, from, to time.Time) (object.UserData, error) {
 	}
 
 	user := object.UserData{
-		DailyCommitsSince1Month: dailyCommits,
+		DailyCommitsSince1Month:             dailyCommits,
+		TotalPullRequestContributions:       query.User.totalPullRequestContributions,
+		TotalPullRequestReviewContributions: query.User.totalPullRequestReviewContributions,
+		TotalRepositoryContributions:        query.User.totalRepositoryContributions,
 	}
 
 	return user, nil
