@@ -28,7 +28,17 @@ func main() {
 	}
 
 	// ファイルパスを設定
+	directory := "./output"
 	filePath := "./output/output.svg"
+
+	// ディレクトリが存在しない場合は作成
+	if _, err := os.Stat(directory); os.IsNotExist(err) {
+		err := os.Mkdir(directory, 0o755)
+		if err != nil {
+			fmt.Printf("Error creating directory: %v\n", err)
+			return
+		}
+	}
 
 	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o666)
 	if err != nil {
