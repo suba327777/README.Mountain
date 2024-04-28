@@ -61,8 +61,7 @@ func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMon
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
-	count := 31
-	grassMountain := generateMountain(count)
+	grassMountain := generateMountain(dailyCommitsSince1MonthCount)
 	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
 	svg += title(username, Mountain)
