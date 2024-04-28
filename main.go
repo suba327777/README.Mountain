@@ -1,25 +1,15 @@
 package main
 
 import (
-	"flag"
 	"fmt"
-
 	"github-readme-mountain/api"
+	"os"
 
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
 func getHello() string {
 	return "hello world"
-}
-
-var (
-	userName string
-)
-
-func init() {
-	flag.StringVar(&userName, "userName", "userName", "Input your user name")
 }
 
 func main() {
@@ -30,26 +20,32 @@ func main() {
 		fmt.Printf("read error: %v", err)
 	}
 
-	r := gin.Default()
+	svg, err := api.MountainHandler()
 
-	r.GET("/mountain", api.MountainHandler)
-
-	if err := r.Run(":8080"); err != nil {
-		fmt.Println("server err", err)
+	if err != nil {
+		fmt.Printf("Error calling MountainHandler: %v\n", err)
+		return
 	}
-	flag.Parse()
-	fmt.Println(flag.Args(), validateArgs())
-}
 
-func validateArgs() error {
-	flag.Parse()
-	if !validateUserName() {
-		return fmt.Errorf("error: Invalid user name %s", userName)
+	// ファイルパスを設定
+	directory := "./output"
+	filePath := "./output/output.svg"
+
+	os.Mkdir(directory, os.ModePerm)
+
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v\n", err)
+		return
 	}
-	return nil
-}
+	defer file.Close()
 
-// TODO: Implement user check logic
-func validateUserName() bool {
-	return userName == "niwaniwa"
+	_, err = file.Write(svg)
+	if err != nil {
+		fmt.Printf("Error writing to file: %v\n", err)
+		return
+	}
+
+	fmt.Println("SVG has been saved successfully.")
+
 }

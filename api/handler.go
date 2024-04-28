@@ -1,33 +1,30 @@
 package api
 
 import (
-	"net/http"
+	"errors"
+	"os"
 	"time"
 
 	"github-readme-mountain/ui"
-
-	"github.com/gin-gonic/gin"
 )
 
-func MountainHandler(c *gin.Context) {
-	username := c.Query("username")
-	if username == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "Username is required"})
-		return
+func MountainHandler() ([]byte, error) {
+
+	username := os.Getenv("USERNAME")
+	if len(username) == 0 {
+		return nil, errors.New("USERNAME is not set")
 	}
 
 	toDate := time.Now()
 	fromDate := toDate.AddDate(0, -1, 0)
 	user, err := getUserData(username, fromDate, toDate)
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch GitHub data"})
-		return
+		return nil, err
 	}
 
 	dailyCommitsSince1MonthCount := commitCountDailySince1Month(user.DailyCommitsSince1Month)
 
 	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount)
 
-	c.Data(http.StatusOK, "image/svg+xml", []byte(svg))
-	c.JSON(http.StatusOK, gin.H{"totalCommit": user})
+	return []byte(svg), nil
 }
