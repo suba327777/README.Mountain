@@ -20,6 +20,7 @@ runs:
       shell: bash
       run: |
         cd README.Mountain
+        ls
         if [ ! -f "${{ github.action_path }}/output/preview.md" ]; then
           cp "./output/preview.md" "${{ github.action_path }}/output/preview.md"
           echo "File copied."
