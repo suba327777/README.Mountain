@@ -31,8 +31,6 @@ func main() {
 	directory := "./output"
 	filePath := "./output/output.svg"
 
-	os.Mkdir(directory, os.ModePerm)
-
 	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o666)
 	if err != nil {
 		fmt.Printf("Error opening file: %v\n", err)
