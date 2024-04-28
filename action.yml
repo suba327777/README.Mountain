@@ -26,3 +26,5 @@ runs:
         else
           echo "File already exists."
         fi
+        cd ${{ github.action_path }}
+        ls
