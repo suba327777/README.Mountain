@@ -19,8 +19,9 @@ runs:
     - name: copy preview file
       shell: bash
       run: |
+        cd README.Mountain
         if [ ! -f "${{ github.action_path }}/output/preview.md" ]; then
-          cp "./README.Mountain/output/preview.md" "${{ github.action_path }}/output/preview.md"
+          cp "./output/preview.md" "${{ github.action_path }}/output/preview.md"
           echo "File copied."
         else
           echo "File already exists."
