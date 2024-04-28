@@ -28,7 +28,6 @@ func main() {
 	}
 
 	// ファイルパスを設定
-	directory := "./output"
 	filePath := "./output/output.svg"
 
 	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o666)
