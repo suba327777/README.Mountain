@@ -15,3 +15,12 @@ runs:
     - name: run
       run: ${{ github.action_path }}/mountain
       shell: bash
+
+    - name: copy preview file
+      run: |
+        if [ ! -f "${{ github.action_path }}/output/preview.md" ]; then
+          cp "./output/preview.md" "${{ github.action_path }}/output/preview.md"
+          echo "File copied."
+        else
+          echo "File already exists."
+        fi
