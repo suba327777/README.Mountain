@@ -1,11 +1,20 @@
 package api
 
-func commitCountDailySince1Month(DailyCommitsSince1Month map[string]int) int {
+func dailyCommitsPeriodCount(dailyCommitsPeriodCount map[string]int) int {
 	count := 0
-	for _, commits := range DailyCommitsSince1Month {
+	for _, commits := range dailyCommitsPeriodCount {
 		if commits >= 1 {
 			count++
 		}
 	}
+	return count
+}
+
+func commitsPeriodCount(commitsPerodCount map[string]int) int {
+	count := 0
+	for _, commits := range commitsPerodCount {
+		count += commits
+	}
+
 	return count
 }

@@ -59,7 +59,7 @@ func getUserData(username string, from, to time.Time) (object.UserData, error) {
 	}
 
 	user := object.UserData{
-		DailyCommitsSince1Month: dailyCommits,
+		DailyCommitsPeriod: dailyCommits,
 	}
 
 	return user, nil
