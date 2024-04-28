@@ -5,21 +5,9 @@ import (
 	"os"
 
 	"github-readme-mountain/api"
-
-	"github.com/joho/godotenv"
 )
 
-func getHello() string {
-	return "hello world"
-}
-
 func main() {
-	fmt.Println(getHello())
-
-	err := godotenv.Load(".env")
-	if err != nil {
-		fmt.Printf("read error: %v", err)
-	}
 
 	svg, err := api.MountainHandler()
 	if err != nil {
