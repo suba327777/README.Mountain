@@ -2,7 +2,6 @@ package api
 
 import (
 	"errors"
-	"fmt"
 	"os"
 	"time"
 
@@ -24,7 +23,6 @@ func MountainHandler() ([]byte, error) {
 	}
 
 	dailyCommitsSince1MonthCount := dailyCommitsPeriodCount(user.DailyCommitsPeriod)
-	fmt.Println(dailyCommitsSince1MonthCount)
 
 	fromDate = time.Date(time.Now().Year(), time.Now().Month(), 1, 0, 0, 0, 0, time.UTC)
 	toDate = time.Date(time.Now().Year(), time.Now().Month()+1, 1, 0, 0, 0, -1, time.UTC)
@@ -33,7 +31,6 @@ func MountainHandler() ([]byte, error) {
 		return nil, err
 	}
 	dailyCommitsMonthCount := dailyCommitsPeriodCount(user.DailyCommitsPeriod)
-	fmt.Println(dailyCommitsMonthCount)
 
 	fromDate = time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.UTC)
 	toDate = time.Date(time.Now().Year(), 12, 31, 23, 59, 59, 999999999, time.UTC)
@@ -42,10 +39,9 @@ func MountainHandler() ([]byte, error) {
 		return nil, err
 	}
 
-	comiitsYearCount := commitsPeriodCount(user.DailyCommitsPeriod)
-	fmt.Println(comiitsYearCount)
+	commitsYearCount := commitsPeriodCount(user.DailyCommitsPeriod)
 
-	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount)
+	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, commitsYearCount)
 
 	return []byte(svg), nil
 }
