@@ -27,4 +27,5 @@ runs:
           echo "File already exists."
         fi
         cd ${{ github.action_path }}
+        cd ./output/
         ls
