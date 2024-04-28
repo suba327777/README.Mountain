@@ -2,8 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github-readme-mountain/api"
 	"os"
+
+	"github-readme-mountain/api"
 
 	"github.com/joho/godotenv"
 )
@@ -21,7 +22,6 @@ func main() {
 	}
 
 	svg, err := api.MountainHandler()
-
 	if err != nil {
 		fmt.Printf("Error calling MountainHandler: %v\n", err)
 		return
@@ -33,7 +33,7 @@ func main() {
 
 	os.Mkdir(directory, os.ModePerm)
 
-	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0666)
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o666)
 	if err != nil {
 		fmt.Printf("Error opening file: %v\n", err)
 		return
@@ -47,5 +47,4 @@ func main() {
 	}
 
 	fmt.Println("SVG has been saved successfully.")
-
 }
