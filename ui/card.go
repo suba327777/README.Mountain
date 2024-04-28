@@ -21,23 +21,24 @@ func title(username string, mountain string) string {
     `, mountain, username)
 }
 
-func leftInfo(width int, tree, climber, Backpack string) string {
+func leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount int, tree, climber string) string {
 	return fmt.Sprintf(`
   <g>
     <g>
-      <g transform="translate(5,65)">%s</g>
-      <text x="35" y="75" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">test: %d</text>
+      <g transform="translate(5,75)">%s</g>
+      <text x="48" y="85" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">commit day</text>
+      <text x="50" y="100" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">per month</text>
+      <text x="125" y="90" font-size="10" dominant-baseline="middle" text-anchor="start" fill="white">%d/%d</text>
     </g>
     <g>
-      <g transform="translate(5,110)">%s</g>
-      <text x="35" y="120" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">test: %d</text>
-    </g>
-    <g>
-      <g transform="translate(5,155)">%s</g>
-      <text x="35" y="165" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">test: %d</text>
+      <g transform="translate(5,140)">%s</g>
+      <text x="40" y="150" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">Total Commits</text>
+      <text x="60" y="165" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">(2024)</text>
+      <text x="130" y="155" font-size="10" dominant-baseline="middle" text-anchor="start" fill="white">%d</text>
+
     </g>
   </g>
-  `, tree, width, climber, width, Backpack, width)
+  `, tree, dailyCommitsMonthCount, endOfMonth, climber, commitsYearCount)
 }
 
 func rightInfo(grass string) string {
@@ -55,17 +56,18 @@ func endSVG() string {
 	return `</svg>`
 }
 
-func GenerateCard(username string, dailyCommitsSince1MonthCount int) string {
+func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsYearCount int) string {
 	width := 340
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
-	Grass := generateMountain(dailyCommitsSince1MonthCount)
+	count := 31
+	grassMountain := generateMountain(count)
 	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
 	svg += title(username, Mountain)
-	svg += leftInfo(width, Tree, Climber, Backpack)
-	svg += rightInfo(Grass)
+	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount, Tree, Climber)
+	svg += rightInfo(grassMountain)
 
 	svg += endSVG()
 
