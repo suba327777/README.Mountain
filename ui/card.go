@@ -56,7 +56,6 @@ func endSVG() string {
 }
 
 func GenerateCard(username string, dailyCommitsSince1MonthCount int) string {
-
 	width := 340
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
