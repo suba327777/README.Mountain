@@ -20,7 +20,7 @@ runs:
       shell: bash
       run: |
         if [ ! -f "${{ github.action_path }}/output/preview.md" ]; then
-          cp "${{ github.action_path }}/README.Mountain/output/preview.md" "${{ github.action_path }}/output/preview.md"
+          cp "./README.Mountain/output/preview.md" "${{ github.action_path }}/output/preview.md"
           echo "File copied."
         else
           echo "File already exists."
