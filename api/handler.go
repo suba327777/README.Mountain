@@ -9,7 +9,6 @@ import (
 )
 
 func MountainHandler() ([]byte, error) {
-
 	username := os.Getenv("USERNAME")
 	if len(username) == 0 {
 		return nil, errors.New("USERNAME is not set")

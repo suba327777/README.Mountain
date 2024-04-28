@@ -17,5 +17,4 @@ func commitsPeriodCount(commitsPerodCount map[string]int) int {
 	}
 
 	return count
-
 }
