@@ -17,6 +17,7 @@ runs:
       shell: bash
 
     - name: copy preview file
+      shell: bash
       run: |
         if [ ! -f "${{ github.action_path }}/output/preview.md" ]; then
           cp "./output/preview.md" "${{ github.action_path }}/output/preview.md"
