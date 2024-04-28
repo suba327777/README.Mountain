@@ -25,4 +25,4 @@ runs:
           echo "File copied."
         else
           echo "File already exists."
-        fia
+        fi
