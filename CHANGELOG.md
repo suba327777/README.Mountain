@@ -12,9 +12,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 ### Fixed
-- Fixed an error in Actions.[`#25`](https://github.com/suba327777/README.Mountain/issues/25)
 
 ### Removed
+
+### 0.0.2 - 2024-4-28
+### Fixed
+- Fixed an error in Actions.[`#25`](https://github.com/suba327777/README.Mountain/issues/25)
 
 ### 0.0.1 - 2024-4-28
 ### Added
