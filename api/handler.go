@@ -30,6 +30,8 @@ func MountainHandler() ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	endOfMonth := toDate.Day()
 	dailyCommitsMonthCount := dailyCommitsPeriodCount(user.DailyCommitsPeriod)
 
 	fromDate = time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.UTC)
@@ -41,7 +43,7 @@ func MountainHandler() ([]byte, error) {
 
 	commitsYearCount := commitsPeriodCount(user.DailyCommitsPeriod)
 
-	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, commitsYearCount)
+	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsYearCount)
 
 	return []byte(svg), nil
 }
