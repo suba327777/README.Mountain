@@ -24,9 +24,9 @@ func MountainHandler(c *gin.Context) {
 		return
 	}
 
-	print(user.DailyCommitsSince1Month)
+	dailyCommitsSince1MonthCount := commitCountDailySince1Month(user.DailyCommitsSince1Month)
 
-	svg := ui.GenerateCard(username)
+	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount)
 
 	c.Data(http.StatusOK, "image/svg+xml", []byte(svg))
 	c.JSON(http.StatusOK, gin.H{"totalCommit": user})

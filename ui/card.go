@@ -55,13 +55,12 @@ func endSVG() string {
 	return `</svg>`
 }
 
-func GenerateCard(username string) string {
+func GenerateCard(username string, dailyCommitsSince1MonthCount int) string {
 	width := 340
 	height := 200
 	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
 	bgColor := "#141321"
-	count := 31
-	Grass := generateMountain(count)
+	Grass := generateMountain(dailyCommitsSince1MonthCount)
 	svg := startSVG(width, height, viewBox)
 	svg += rect(width, height, bgColor)
 	svg += title(username, Mountain)
