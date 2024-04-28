@@ -2,10 +2,10 @@ package main
 
 import (
 	"fmt"
+	"os"
 
 	"github-readme-mountain/api"
 
-	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
 
@@ -21,11 +21,27 @@ func main() {
 		fmt.Printf("read error: %v", err)
 	}
 
-	r := gin.Default()
-
-	r.GET("/mountain", api.MountainHandler)
-
-	if err := r.Run(":8080"); err != nil {
-		fmt.Println("server err", err)
+	svg, err := api.MountainHandler()
+	if err != nil {
+		fmt.Printf("Error calling MountainHandler: %v\n", err)
+		return
 	}
+
+	// ファイルパスを設定
+	filePath := "./output/output.svg"
+
+	file, err := os.OpenFile(filePath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0o666)
+	if err != nil {
+		fmt.Printf("Error opening file: %v\n", err)
+		return
+	}
+	defer file.Close()
+
+	_, err = file.Write(svg)
+	if err != nil {
+		fmt.Printf("Error writing to file: %v\n", err)
+		return
+	}
+
+	fmt.Println("SVG has been saved successfully.")
 }

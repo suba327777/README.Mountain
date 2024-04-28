@@ -1,4 +1,38 @@
-# hackathon
+# README.Mountain
 
 ## dependency, environments
 - golang 1.21
+
+## how to use (fpr GitHub Actions)
+
+1. Create your repository.
+2. Create workflow file.
+path: `.github/workflow/generate-mountain.yml`
+
+example:
+```
+on:
+  schedule: # run 0:00 (JST)
+    - cron: "0 9 * * *"
+  workflow_dispatch:
+
+jobs:
+  readme_mountain:
+    runs-on: ubuntu-latest
+    name: test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Use test-nirila-actionn
+        uses: suba327777/github-readme-mountain@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USERNAME: ${{ github.repository_owner }}
+      - name: commit & push
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "[μRM] generate svg."
+          git push
+```

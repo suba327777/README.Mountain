@@ -1,0 +1,9 @@
+name: "README mountain"
+description: "This action runs a μ-lab hackathon"
+author: "μ-lab"
+
+runs:
+  using: "composite"
+  steps:
+    - run: go run ${{ github.action_path }}/main.go
+      shell: bash
