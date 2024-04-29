@@ -3,6 +3,11 @@
 ## dependency, environments
 - golang 1.21
 
+## demo
+<p align="center">
+<img src="https://github.com/suba327777/README.Mountain/assets/84484832/2406be34-b831-4cd8-bdd4-09084eee25f6"/>
+</p>
+
 ## how to use (fpr GitHub Actions)
 
 1. Create your repository.
