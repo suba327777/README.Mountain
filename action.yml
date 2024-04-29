@@ -15,3 +15,7 @@ runs:
     - name: run
       run: ${{ github.action_path }}/mountain
       shell: bash
+
+branding:
+  icon: 'activity'
+  color: 'green'
