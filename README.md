@@ -24,12 +24,12 @@ on:
 jobs:
   readme_mountain:
     runs-on: ubuntu-latest
-    name: test
+    name: generate-mountain
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Use test-nirila-actionn
-        uses: suba327777/github-readme-mountain@latest
+      - name: Use README.Mountain
+        uses: suba327777/README.Mountain@release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
