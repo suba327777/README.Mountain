@@ -17,7 +17,7 @@ func main() {
 
 	// ファイルパスを設定
 	directory := "./output"
-	filePath := "./output/output.svg"
+	filePath := "./output/mountain.svg"
 
 	// ディレクトリが存在しない場合は作成
 	if _, err := os.Stat(directory); os.IsNotExist(err) {
