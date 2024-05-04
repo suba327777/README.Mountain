@@ -41,15 +41,15 @@ func leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount int, treeIcon
   `, treeIcon, textColor, textColor, textColor, dailyCommitsMonthCount, endOfMonth, climberIcon, textColor, textColor, textColor, commitsYearCount)
 }
 
-func rightInfo(bgColor, grass string) string {
+func rightInfo(bgColor, borderColor, grass string) string {
 	return fmt.Sprintf(`
   <g>
-    <rect x="175" y="55" width="150" height="130" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/> 
+    <rect x="175" y="55" width="150" height="130" fill="%s" rx="5" ry="5" stroke="%s" stroke-width="1"/> 
     <g transform="translate(158 167)">
       <g>%s</g>
     </g>
   </g>
-  `, bgColor, grass)
+  `, bgColor, borderColor, grass)
 }
 
 func endSVG() string {
@@ -68,9 +68,9 @@ func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMon
 
 	svg := startSVG()
 	svg += rect(theme.BgColor, theme.BorderColor)
-	svg += title(mountainIcon, theme.TextColor, username)
+	svg += title(mountainIcon, theme.TitleColor, username)
 	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount, treeIcon, climberIcon, theme.TextColor)
-	svg += rightInfo(theme.BgColor, grassMountain)
+	svg += rightInfo(theme.BgColor, theme.BorderColor, grassMountain)
 	svg += endSVG()
 
 	return svg
