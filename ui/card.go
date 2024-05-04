@@ -2,54 +2,54 @@ package ui
 
 import (
 	"fmt"
+	"os"
 )
 
-func startSVG(width, height int, viewBox string) string {
-	return fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" width="%d" height="%d" viewBox="%s" >`, width, height, viewBox)
+func startSVG() string {
+	return fmt.Sprintf(`<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" >`)
 }
 
-func rect(width, height int, bgColor string) string {
-	return fmt.Sprintf(`<rect width="%d" height="%d" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/>`, width, height, bgColor)
+func rect(bgColor, borderColor string) string {
+	return fmt.Sprintf(`<rect width="340" height="200" fill="%s" rx="5" ry="5" stroke="%s" stroke-width="1"/>`, bgColor, borderColor)
 }
 
-func title(username string, mountain string) string {
+func title(mountainIcon, textColor, username string) string {
 	return fmt.Sprintf(`
     <g>
       <g transform="translate(5,8)">%s</g>
-        <text x="45" y="26" font-size="16" dominant-baseline="middle" text-anchor="start" fill="white">%s</text>
+        <text x="45" y="26" font-size="16" dominant-baseline="middle" text-anchor="start" fill="%s">%s</text>
     </g>
-    `, mountain, username)
+    `, mountainIcon, textColor, username)
 }
 
-func leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount int, tree, climber string) string {
+func leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount int, treeIcon, climberIcon, textColor string) string {
 	return fmt.Sprintf(`
   <g>
     <g>
       <g transform="translate(5,75)">%s</g>
-      <text x="48" y="85" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">commit day</text>
-      <text x="50" y="100" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">per month</text>
-      <text x="125" y="90" font-size="10" dominant-baseline="middle" text-anchor="start" fill="white">%d/%d</text>
+      <text x="48" y="85" font-size="11" dominant-baseline="middle" text-anchor="start" fill="%s">commit day</text>
+      <text x="50" y="100" font-size="11" dominant-baseline="middle" text-anchor="start" fill="%s">per month</text>
+      <text x="125" y="90" font-size="10" dominant-baseline="middle" text-anchor="start" fill="%s">%d/%d</text>
     </g>
     <g>
-      <g transform="translate(5,140)">%s</g>
-      <text x="40" y="150" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">Total Commits</text>
-      <text x="60" y="165" font-size="11" dominant-baseline="middle" text-anchor="start" fill="white">(2024)</text>
-      <text x="130" y="155" font-size="10" dominant-baseline="middle" text-anchor="start" fill="white">%d</text>
+      <g transform="translate(5,140)">%s</g> <text x="40" y="150" font-size="11" dominant-baseline="middle" text-anchor="start" fill="%s">Total Commits</text>
+      <text x="60" y="165" font-size="11" dominant-baseline="middle" text-anchor="start" fill="%s">(2024)</text>
+      <text x="130" y="155" font-size="10" dominant-baseline="middle" text-anchor="start" fill="%s">%d</text>
 
     </g>
   </g>
-  `, tree, dailyCommitsMonthCount, endOfMonth, climber, commitsYearCount)
+  `, treeIcon, textColor, textColor, textColor, dailyCommitsMonthCount, endOfMonth, climberIcon, textColor, textColor, textColor, commitsYearCount)
 }
 
-func rightInfo(grass string) string {
+func rightInfo(bgColor, grass string) string {
 	return fmt.Sprintf(`
   <g>
-    <rect x="175" y="55" width="150" height="130" fill="#141321" rx="5" ry="5" stroke="white" stroke-width="1"/> 
+    <rect x="175" y="55" width="150" height="130" fill="%s" rx="5" ry="5" stroke="white" stroke-width="1"/> 
     <g transform="translate(158 167)">
       <g>%s</g>
     </g>
   </g>
-  `, grass)
+  `, bgColor, grass)
 }
 
 func endSVG() string {
@@ -57,17 +57,20 @@ func endSVG() string {
 }
 
 func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsYearCount int) string {
-	width := 340
-	height := 200
-	viewBox := fmt.Sprintf("0 0 %d %d", width, height)
-	bgColor := "#141321"
-	grassMountain := generateMountain(dailyCommitsSince1MonthCount)
-	svg := startSVG(width, height, viewBox)
-	svg += rect(width, height, bgColor)
-	svg += title(username, Mountain)
-	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount, Tree, Climber)
-	svg += rightInfo(grassMountain)
+	themeName := os.Getenv("THEME")
+	theme := getTheme(themeName)
 
+	mountainIcon := changeMountainColor(theme.MountainColor)
+	climberIcon := changeClimberColor(theme.IconColor)
+	treeIcon := changeTreeColor(theme.IconColor)
+	changeTriangleColor(theme.MountainColor)
+	grassMountain := generateMountain(dailyCommitsSince1MonthCount)
+
+	svg := startSVG()
+	svg += rect(theme.BgColor, theme.BorderColor)
+	svg += title(mountainIcon, theme.TextColor, username)
+	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, commitsYearCount, treeIcon, climberIcon, theme.TextColor)
+	svg += rightInfo(theme.BgColor, grassMountain)
 	svg += endSVG()
 
 	return svg
