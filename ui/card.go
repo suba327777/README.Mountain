@@ -64,7 +64,7 @@ func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMon
 	climberIcon := changeClimberColor(theme.IconColor)
 	treeIcon := changeTreeColor(theme.IconColor)
 	changeTriangleColor(theme.MountainColor)
-	grassMountain := generateMountain(dailyCommitsSince1MonthCount)
+	grassMountain := generateMountain(31, theme.Name)
 
 	svg := startSVG()
 	svg += rect(theme.BgColor, theme.BorderColor)

@@ -13,6 +13,15 @@ type Theme struct {
 var Themes = []Theme{
 	{
 		Name:          "default",
+		TitleColor:    "#434d58",
+		IconColor:     "#2f80ed",
+		MountainColor: "#ADFF2F",
+		TextColor:     "#434d58",
+		BgColor:       "#FFFFeF",
+		BorderColor:   "#e4e2e2",
+	},
+	{
+		Name:          "dark",
 		TitleColor:    "#FFFFFF",
 		IconColor:     "#FFFFFF",
 		MountainColor: "#ADFF2F",
