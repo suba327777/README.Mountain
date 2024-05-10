@@ -45,11 +45,11 @@ var Star = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" x="10
 var Sun = `<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" x="10" y="10" viewBox="0 0 200 200"><path fill="#FDB86D" d="M95.783,198.255a5.964,5.964,0,0,1-1.75-4.3V168.069a5.967,5.967,0,1,1,11.935,0v25.882A5.968,5.968,0,0,1,100.088,200H100A5.969,5.969,0,0,1,95.783,198.255Zm66.425-27.6-18.3-18.3a5.967,5.967,0,1,1,8.438-8.438l18.3,18.3a5.967,5.967,0,1,1-8.438,8.438Zm-132.857.113a5.967,5.967,0,0,1,0-8.559l18.3-18.3a5.967,5.967,0,1,1,8.438,8.438l-18.3,18.3a5.967,5.967,0,0,1-8.434.121ZM54.131,100A45.869,45.869,0,1,1,100,145.869,45.869,45.869,0,0,1,54.131,100ZM162.1,100a5.967,5.967,0,0,1,5.968-5.967h25.882a5.968,5.968,0,1,1,0,11.934H168.069A5.968,5.968,0,0,1,162.1,100ZM6.05,105.966a5.967,5.967,0,1,1,0-11.933H31.932a5.967,5.967,0,1,1,0,11.935ZM143.914,56.094a5.966,5.966,0,0,1,0-8.438l18.3-18.3a5.967,5.967,0,1,1,8.438,8.438l-18.3,18.3a5.966,5.966,0,0,1-8.439,0Zm-96.258-.008-18.3-18.3a5.967,5.967,0,1,1,8.438-8.438l18.3,18.3a5.967,5.967,0,1,1-8.439,8.438ZM94.035,31.932V6.05q0-.039,0-.077a5.967,5.967,0,1,1,11.934,0q0,.038,0,.076V31.932a5.967,5.967,0,1,1-11.934,0Z" transform="translate(0 0)"/></svg>`
 var Flag = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" x="10" y="10" viewBox="0 0 200 181.862"><path fill="#DA523A" d="M72.939,262.48a9.133,9.133,0,0,0-8.676,6.485L12.206,432.435a9.134,9.134,0,0,0,17.406,5.542l23.4-73.495,149.625,37.847-25.57-67.578,34.7-47.487L77.052,289l4.616-14.5a9.133,9.133,0,0,0-8.729-12.027Z" transform="translate(-11.774 -262.479)"/></svg>`
 
-func changeMountainColor(mountainColor string) string {
-	return strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, mountainColor))
+func changeMountainColor(mountainIconColor string) string {
+	return strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, mountainIconColor))
 }
-func changeTriangleColor(mountainColor string) {
-	strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, mountainColor))
+func changeTriangleColor(triangleMountainColor string) {
+	strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, triangleMountainColor))
 }
 func changeClimberColor(iconColor string) string {
 	return strings.ReplaceAll(Climber, `fill="#FFFFFF"`, fmt.Sprintf(`fill="%s"`, iconColor))
