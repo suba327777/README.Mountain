@@ -48,9 +48,6 @@ var Flag = `<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" x="10
 func changeMountainColor(mountainIconColor string) string {
 	return strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, mountainIconColor))
 }
-func changeTriangleColor(triangleMountainColor string) {
-	strings.ReplaceAll(Mountain, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, triangleMountainColor))
-}
 func changeClimberColor(iconColor string) string {
 	return strings.ReplaceAll(Climber, `fill="#FFFFFF"`, fmt.Sprintf(`fill="%s"`, iconColor))
 }
@@ -58,8 +55,10 @@ func changeTreeColor(iconColor string) string {
 	return strings.ReplaceAll(Tree, `fill="#FFFFFF"`, fmt.Sprintf(`fill="%s"`, iconColor))
 }
 
-func generateTrianglePath(x, y int) string {
-	return strings.ReplaceAll(Triangle, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
+func generateTrianglePath(x, y int, triangleMountainColor string) string {
+	triangle := strings.ReplaceAll(Triangle, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
+	triangle = strings.ReplaceAll(triangle, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, triangleMountainColor))
+	return triangle
 }
 func generateStarPath(x, y int) string {
 	return strings.ReplaceAll(Star, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
