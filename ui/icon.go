@@ -60,12 +60,7 @@ func generateTrianglePath(x, y int, triangleMountainColor string) string {
 	triangle = strings.ReplaceAll(triangle, `fill="#ADFF2F"`, fmt.Sprintf(`fill="%s"`, triangleMountainColor))
 	return triangle
 }
-func generateStarPath(x, y int) string {
-	return strings.ReplaceAll(Star, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
-}
-func generateSunPath(x, y int) string {
-	return strings.ReplaceAll(Sun, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
-}
-func generateFlagPath(x, y int) string {
-	return strings.ReplaceAll(Flag, `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
+
+func generateBonusIconPath(x, y int, svgIcon string) string {
+	return strings.ReplaceAll(fmt.Sprintf("%s", svgIcon), `x="10" y="10"`, fmt.Sprintf(`x="%d" y="%d"`, x, y))
 }
