@@ -41,9 +41,9 @@ func generateMountain(count int, themeName, triangleMountainColor string) string
 			y -= 5
 			switch themeName {
 			case "default":
-				results.WriteString(generateSunPath(x, y))
+				results.WriteString(generateBonusIconPath(x, y, Sun))
 			case "dark":
-				results.WriteString(generateStarPath(x, y))
+				results.WriteString(generateBonusIconPath(x, y, Star))
 			}
 		} else if i == 30 {
 			x -= 30
@@ -52,12 +52,12 @@ func generateMountain(count int, themeName, triangleMountainColor string) string
 			case "default":
 
 			case "dark":
-				results.WriteString(generateStarPath(x, y))
+				results.WriteString(generateBonusIconPath(x, y, Star))
 			}
 		} else if i == 31 {
 			x += 30
 			y -= 30
-			results.WriteString(generateFlagPath(x, y))
+			results.WriteString(generateBonusIconPath(x, y, Flag))
 		} else {
 			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
 		}
