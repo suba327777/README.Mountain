@@ -60,10 +60,10 @@ func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMon
 	themeName := os.Getenv("THEME")
 	theme := getTheme(themeName)
 
-	mountainIcon := changeMountainColor(theme.MountainColor)
+	mountainIcon := changeMountainColor(theme.MountainIconColor)
 	climberIcon := changeClimberColor(theme.IconColor)
 	treeIcon := changeTreeColor(theme.IconColor)
-	changeTriangleColor(theme.MountainColor)
+	changeTriangleColor(theme.MountainIconColor)
 	grassMountain := generateMountain(dailyCommitsSince1MonthCount, theme.Name)
 
 	svg := startSVG()
