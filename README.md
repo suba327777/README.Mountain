@@ -3,10 +3,14 @@
 ## dependency, environments
 - golang 1.21
 
-## demo
-<p align="center">
-<img src="https://github.com/suba327777/README.Mountain/assets/84484832/2406be34-b831-4cd8-bdd4-09084eee25f6"/>
-</p>
+## Themes
+
+|   |   |   |   |   
+|:---:|:---:|:---:|:---:|
+|default|dark|sakura|maple|
+|![スクリーンショット 2024-05-13 22 48 51](https://github.com/suba327777/README.Mountain/assets/84484832/0fa16586-bbf9-4ef7-ac40-b9b92c4bb35b)|![スクリーンショット 2024-05-13 22 47 30](https://github.com/suba327777/README.Mountain/assets/84484832/9af87b66-b3de-40b1-beca-114893443bc0)|![スクリーンショット 2024-05-13 22 14 26](https://github.com/suba327777/README.Mountain/assets/84484832/9b9d8ed3-cfa8-47fe-9b2c-a363c151e029)|![スクリーンショット 2024-05-13 22 15 02](https://github.com/suba327777/README.Mountain/assets/84484832/8569962e-ceea-431a-a15c-0440f312f7be)
+
+
 
 ## how to use (fpr GitHub Actions)
 
