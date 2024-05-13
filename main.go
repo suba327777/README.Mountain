@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	svg, err := api.MountainHandler()
 	if err != nil {
 		fmt.Printf("Error calling MountainHandler: %v\n", err)
@@ -16,8 +15,8 @@ func main() {
 	}
 
 	// ファイルパスを設定
-	directory := "./output"
-	filePath := "./output/output.svg"
+	directory := "./mountain-output"
+	filePath := "./mountain-output/mountain.svg"
 
 	// ディレクトリが存在しない場合は作成
 	if _, err := os.Stat(directory); os.IsNotExist(err) {
