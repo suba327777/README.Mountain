@@ -42,6 +42,16 @@ var Themes = []Theme{
 		BgColor:               "#FDD9D9",
 		BorderColor:           "#FEFFFF",
 	},
+	{
+		Name:                  "maple",
+		TitleColor:            "#D88352",
+		IconColor:             "#ACBC65",
+		MountainIconColor:     "#E58C43",
+		TriangleMountainColor: "#FBAC33",
+		TextColor:             "#D88352",
+		BgColor:               "#FCC796",
+		BorderColor:           "#D88352",
+	},
 }
 
 func getTheme(name string) Theme {
