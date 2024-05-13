@@ -1,4 +1,16 @@
-# README.Mountain
+<div align="center">
+   <h1>README.Mountain</h1>
+
+   <p>
+      A tool to generate your github mountain for profile README.
+   </p>
+   <p align="center">
+      <a href="https://github.com/suba327777/README.Mountain/stargazers">
+      <img alt="Stargazers" src="https://img.shields.io/github/stars/suba327777/README.Mountain?style=for-the-badge&logo=github&logoColor=D9E0EE&labelColor=302D41"></a>
+      <a href="https://github.com/suba327777/README.Mountain/releases/latest">
+      <img alt="Releases" src="https://img.shields.io/github/release/suba327777/README.Mountain?style=for-the-badge&logo=semantic-release&logoColor=D9E0EE&labelColor=302D41"/></a>
+   </p>
+</div>
 
 ## dependency, environments
 - golang 1.21
