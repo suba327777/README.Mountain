@@ -12,9 +12,6 @@
    </p>
 </div>
 
-## dependency, environments
-- golang 1.21
-
 ## Themes
 
 |   |   |   |   |   
@@ -59,3 +56,6 @@ jobs:
           git commit -m "[μRM] generate svg."
           git push
 ```
+
+## dependency, environments
+- golang 1.21
