@@ -8,7 +8,6 @@ import (
 )
 
 func main() {
-
 	svg, err := api.MountainHandler()
 	if err != nil {
 		fmt.Printf("Error calling MountainHandler: %v\n", err)
