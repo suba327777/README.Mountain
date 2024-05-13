@@ -33,6 +33,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
+          # select theme
+          THEME: "default"
       - name: commit & push
         run: |
           git config user.name  "github-actions[bot]"
