@@ -42,7 +42,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Use README.Mountain
-        uses: suba327777/README.Mountain@release
+        uses: suba327777/README.Mountain@main
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
