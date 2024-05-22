@@ -1,0 +1,25 @@
+name: release branch PR 
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  create-release-pr:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+  
+    - name: Get latest release tag
+      id: get_latest_release
+      run: |
+        latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+        echo "Latest tag: $latest_tag"
+        echo "::set-output name=latest_tag::$latest_tag
