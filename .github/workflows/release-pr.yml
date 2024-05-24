@@ -29,7 +29,7 @@ jobs:
         fi
         echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
         
-    - name: Get list of merged PRs since latest release
+    - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
           latest_tag=${{ steps.latest_release_tag.outputs.latest_tag }}
