@@ -24,9 +24,6 @@ jobs:
       id: latest_release_tag
       run: |
         pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
-        if [ "$pre_tag" = "null" ]; then
-          pre_tag="0"
-        fi
         echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
         
     - name: fetch list of merged PRs since latest release
