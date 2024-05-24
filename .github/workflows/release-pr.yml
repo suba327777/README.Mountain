@@ -29,8 +29,8 @@ jobs:
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
-          latest_tag=${{ steps.pre_tag.outputs.pre_tag }}
-          merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$latest_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
+          previous_tag=${{ steps.pre_tag.outputs.pre_tag }}
+          merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$previous_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
 
