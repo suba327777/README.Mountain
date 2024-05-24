@@ -24,21 +24,23 @@ jobs:
       id: pre_tag
       run: |
         pre_tag=$(gh api repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
-        echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
+        echo "pre_tag=$pre_tag" >> $GITHUB_ENV
 
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
           previous_tag=${{ steps.pre_tag.outputs.pre_tag }}
           merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=$previous_tag" | jq -r .body)
-          echo "::set-output name=merged_prs::$merged_prs"
-          echo "$merged_prs"
+          echo "merged_prs<<EOF" >> $GITHUB_ENV
+          echo "$merged_prs" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
 
 
     - name: Create PR to release branch
       run: |
           PR_EXISTS=$(gh pr list --head main --base release --state open --json number --jq '.[].number')
-          merged_prs=${{ steps.merged_prs.outputs.merged_prs }}
+          merged_prs="${{ steps.merged_prs.outputs.merged_prs }}"
           pr_body=$merged_prs"
 
           if [ -z "$PR_EXISTS" ]; then
