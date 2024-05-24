@@ -24,7 +24,7 @@ jobs:
       id: pre_tag
       run: |
         pre_tag=$(gh api repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
-        echo "pre_tag=$pre_tag" >> $GITHUB_ENV
+        echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
 
     - name: fetch list of merged PRs since latest release
       id: merged_prs
