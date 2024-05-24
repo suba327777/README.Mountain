@@ -37,21 +37,12 @@ jobs:
     - name: Create PR to release branch
       run: |
           PR_EXISTS=$(gh pr list --head main --base release --state open --json number --jq '.[].number')
-          pr_body="The following PRs were merged since the last release:\n"
-          for pr in $(echo "${{ steps.merged_prs.outputs.merged_prs }}" | jq -r '.[] | @base64'); do
-            _jq() {
-              echo ${pr} | base64 --decode | jq -r ${1}
-            }
-            pr_title=$(_jq '.title')
-            pr_number=$(_jq '.number')
-            pr_body+="\n- $pr_title (#$pr_number)"
-          done
+          merged_prs="${{ steps.merged_prs.outputs.merged_prs }}"
+          pr_body="The following PRs were merged since the last release:\n$merged_prs\n"
 
           if [ -z "$PR_EXISTS" ]; then
             gh pr create --title "Merge main into release" --body "$pr_body" --base release --head main
           else
-            existing_pr_body=$(gh pr view $PR_EXISTS --json body --jq '.body')
-            new_pr_body="${existing_pr_body}\n${pr_body}"
-            gh pr edit $PR_EXISTS --body "$new_pr_body"
-            gh pr comment $PR_EXISTS --body "Additional PRs merged:\n${pr_body}"
+            gh pr edit $PR_EXISTS --body "$pr_body"
+            gh pr comment $PR_EXISTS --body "Additional PRs merged:\n$merged_prs"
           fi
