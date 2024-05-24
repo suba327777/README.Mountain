@@ -1,0 +1,56 @@
+name: Create release branch PR 
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  create-release-pr:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Get latest release tag
+      id: get_latest_release
+      run: |
+        latest_tag=$(git describe --tags $(git rev-list --tags --max-count=1))
+        echo "Latest tag: $latest_tag"
+        echo "::set-output name=latest_tag::$latest_tag
+
+    - name: Get list of merged PRs since latest release
+      id: merged_prs
+      run: |
+          latest_tag=${{ steps.get_latest_release.outputs.latest_tag }}
+          merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$latest_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
+          echo "$merged_prs"
+          echo "::set-output name=merged_prs::$merged_prs"
+
+    - name: Create PR to release branch
+      run: |
+          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
+          PR_EXISTS=$(gh pr list --head main --base release --state open --json number --jq '.[].number')
+          pr_body="The following PRs were merged since the last release:\n"
+          for pr in $(echo "${{ steps.merged_prs.outputs.merged_prs }}" | jq -r '.[] | @base64'); do
+            _jq() {
+              echo ${pr} | base64 --decode | jq -r ${1}
+            }
+            pr_title=$(_jq '.title')
+            pr_number=$(_jq '.number')
+            pr_body+="\n- $pr_title (#$pr_number)"
+          done
+
+          if [ -z "$PR_EXISTS" ]; then
+            gh pr create --title "Merge main into release" --body "$pr_body" --base release --head main
+          else
+            existing_pr_body=$(gh pr view $PR_EXISTS --json body --jq '.body')
+            new_pr_body="${existing_pr_body}\n${pr_body}"
+            gh pr edit $PR_EXISTS --body "$new_pr_body"
+            gh pr comment $PR_EXISTS --body "Additional PRs merged:\n${pr_body}"
+          fi
