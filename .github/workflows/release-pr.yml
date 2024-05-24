@@ -29,7 +29,7 @@ jobs:
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
-          previous_tag="v1.0.1"
+          previous_tag="v1.0.0"
           merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$previous_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
