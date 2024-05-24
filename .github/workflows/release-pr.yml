@@ -23,7 +23,7 @@ jobs:
     - name: fetch previous tag
       id: pre_tag
       run: |
-        pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
+        pre_tag=$(gh api repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
         
     - name: fetch list of merged PRs since latest release
