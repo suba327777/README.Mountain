@@ -34,7 +34,6 @@ jobs:
           echo "merged_prs<<EOF" >> $GITHUB_OUTPUT
           echo "$merged_prs" >> $GITHUB_OUTPUT
           echo "EOF" >> $GITHUB_OUTPUT
-          echo ${{steps.merged_prs.outputs.merged_prs}}
 
 
 
