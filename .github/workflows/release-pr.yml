@@ -25,14 +25,15 @@ jobs:
       run: |
         pre_tag=$(gh api repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
-        
+
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
           previous_tag=${{ steps.pre_tag.outputs.pre_tag }}
           merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=$previous_tag" | jq -r .body)
-          echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
+          echo "$merged_prs"
+
 
     - name: Create PR to release branch
       run: |
