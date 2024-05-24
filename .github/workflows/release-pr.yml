@@ -20,8 +20,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: fetch latest release tag
-      id: latest_release_tag
+    - name: fetch previous tag
+      id: pre_tag
       run: |
         pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         echo "pre_tag=$pre_tag" >> $GITHUB_OUTPUT
@@ -29,7 +29,7 @@ jobs:
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
-          latest_tag=${{ steps.latest_release_tag.outputs.latest_tag }}
+          latest_tag=${{ steps.pretag.outputs.pre_tag }}
           merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$latest_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
