@@ -30,7 +30,7 @@ jobs:
       id: merged_prs
       run: |
           previous_tag="v1.0.0"
-          merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$previous_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
+          merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=v1.0.2" | jq -r .body)
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
 
