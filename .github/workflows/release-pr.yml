@@ -1,10 +1,13 @@
 name: Create release branch PR 
 
 on:
-  pull_request:
-    types: [closed]
+  push:
     branches:
       - main
+  # pull_request:
+  #   types: [closed]
+  #   branches:
+  #     - main
 
 jobs:
   create-release-pr:
