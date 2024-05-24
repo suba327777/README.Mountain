@@ -41,7 +41,7 @@ jobs:
       run: |
           PR_EXISTS=$(gh pr list --head main --base release --state open --json number --jq '.[].number')
           merged_prs="${{ steps.merged_prs.outputs.merged_prs }}"
-          pr_body=$merged_prs"
+          pr_body=$merged_prs
 
           if [ -z "$PR_EXISTS" ]; then
             gh pr create --title "Merge main into release" --body "$pr_body" --base release --head main
