@@ -20,8 +20,8 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
 
-    - name: Get latest release tag
-      id: pre_tag
+    - name: fetch latest release tag
+      id: latest_release_tag
       run: |
         pre_tag=$(curl -H 'Accept: application/vnd.github.v3+json' -H 'Authorization: token ${{ secrets.GITHUB_TOKEN }}' https://api.github.com/repos/${{ github.repository }}/releases/latest | jq -r .tag_name)
         if [ "$pre_tag" = "null" ]; then
@@ -32,14 +32,13 @@ jobs:
     - name: Get list of merged PRs since latest release
       id: merged_prs
       run: |
-          latest_tag=${{ steps.get_latest_release.outputs.latest_tag }}
+          latest_tag=${{ steps.latest_release_tag.outputs.latest_tag }}
           merged_prs=$(gh pr list --state merged --base main --json title,number,headRefName,mergedAt --jq ".[] | select(.mergedAt > \"$latest_tag\") | {title: .title, number: .number, headRefName: .headRefName}")
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
 
     - name: Create PR to release branch
       run: |
-          gh auth login --with-token <<< "${{ secrets.GITHUB_TOKEN }}"
           PR_EXISTS=$(gh pr list --head main --base release --state open --json number --jq '.[].number')
           pr_body="The following PRs were merged since the last release:\n"
           for pr in $(echo "${{ steps.merged_prs.outputs.merged_prs }}" | jq -r '.[] | @base64'); do
