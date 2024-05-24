@@ -29,8 +29,8 @@ jobs:
     - name: fetch list of merged PRs since latest release
       id: merged_prs
       run: |
-          previous_tag="v1.0.0"
-          merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=v1.0.2" | jq -r .body)
+          previous_tag=${{ steps.get_latest_release.outputs.latest_tag }}
+          merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=$previous_tag" | jq -r .body)
           echo "$merged_prs"
           echo "::set-output name=merged_prs::$merged_prs"
 
