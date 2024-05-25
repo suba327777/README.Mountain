@@ -1,17 +1,14 @@
 name: Create release branch PR 
 
 on:
-  push:
+  pull_request:
+    types: [closed]
     branches:
       - main
-  # pull_request:
-  #   types: [closed]
-  #   branches:
-  #     - main
 
 jobs:
   create-release-pr:
-    # if: github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     env:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
