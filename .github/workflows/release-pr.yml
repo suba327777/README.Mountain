@@ -31,7 +31,9 @@ jobs:
       run: |
           previous_tag=${{ steps.pre_tag.outputs.pre_tag }}
           merged_prs=$(gh api --method POST /repos/{owner}/{repo}/releases/generate-notes -f "tag_name=tmp" -f "target_commitish=main" -f "previous_tag_name=$previous_tag" | jq -r .body)
-          echo "merged_prs=$merged_prs" >> $GITHUB_OUTPUT
+          echo "merged_prs<<EOF" >> $GITHUB_OUTPUT
+          echo "$merged_prs" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
 
 
 
