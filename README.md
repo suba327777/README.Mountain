@@ -42,12 +42,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Use README.Mountain
-        uses: suba327777/README.Mountain@main
+        uses: suba327777/README.Mountain@release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USERNAME: ${{ github.repository_owner }}
           # select theme
           THEME: "default"
+      - name: Diff
+        id: diff
+        run: |
+          git add -N .
+          git diff --name-only --exit-code
+        continue-on-error: true
       - name: commit & push
         run: |
           git config user.name  "github-actions[bot]"
@@ -55,6 +61,7 @@ jobs:
           git add .
           git commit -m "[μRM] generate svg."
           git push
+        if: steps.diff.outcome == 'failure'
 ```
 
 ## dependency, environments
