@@ -17,7 +17,7 @@ func title(mountainIcon, textColor, username string) string {
 	return fmt.Sprintf(`
     <g>
       <g transform="translate(5,8)">%s</g>
-        <text x="45" y="26" font-size="16" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%s</text>
+        <text x="45" y="26" font-size="18" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%s</text>
     </g>
     `, mountainIcon, textColor, username)
 }
@@ -27,14 +27,14 @@ func leftInfo(dailyCommitsMonthCount, endOfMonth int, treeIcon, climberIcon, tex
   <g>
     <g>
       <g transform="translate(5,75)">%s</g>
-      <text x="48" y="85" font-size="11" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Commit Day</text>
-      <text x="50" y="100" font-size="11" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Per Month</text>
-      <text x="133" y="90" font-size="10" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%d/%d</text>
+      <text x="46" y="85" font-size="14" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Commit Day</text>
+      <text x="50" y="100" font-size="14" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Per Month</text>
+      <text x="135" y="90" font-size="13" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%d/%d</text>
     </g>
     <g>
-      <g transform="translate(5,140)">%s</g> <text x="40" y="150" font-size="11" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Total Commits</text>
-      <text x="60" y="165" font-size="11" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">(2024)</text>
-      <text x="140" y="155" font-size="10" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%s</text>
+      <g transform="translate(5,140)">%s</g> <text x="40" y="150" font-size="14" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">Total Commits</text>
+      <text x="65" y="165" font-size="14" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">(2024)</text>
+      <text x="140" y="155" font-size="13" dominant-baseline="middle" text-anchor="start" font-weight="bold" fill="%s">%s</text>
 
     </g>
   </g>
