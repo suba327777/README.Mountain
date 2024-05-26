@@ -8,5 +8,4 @@ linters:
     - gosimple
     - varcheck
     - misspell
-    - lll
     - gofumpt
