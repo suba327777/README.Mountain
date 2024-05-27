@@ -62,6 +62,26 @@ var Themes = []Theme{
 		BgColor:               "#FCC796",
 		BorderColor:           "#D88352",
 	},
+	{
+		Name:                  "solarized",
+		TitleColor:            "#268BD2",
+		IconColor:             "#B58900",
+		MountainIconColor:     "#859900",
+		TriangleMountainColor: "#859900",
+		TextColor:             "#586E75",
+		BgColor:               "#FDF6E3",
+		BorderColor:           "#586E75",
+	},
+	{
+		Name:                  "solarized_dark",
+		TitleColor:            "#268BD2",
+		IconColor:             "#B58900",
+		MountainIconColor:     "#859900",
+		TriangleMountainColor: "#859900",
+		TextColor:             "#839496",
+		BgColor:               "#073642",
+		BorderColor:           "#839496",
+	},
 }
 
 func getTheme(name string) Theme {
