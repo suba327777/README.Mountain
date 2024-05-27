@@ -33,6 +33,16 @@ var Themes = []Theme{
 		BorderColor:           "#FFFFFF",
 	},
 	{
+		Name:                  "onedark",
+		TitleColor:            "#E4BF7A",
+		IconColor:             "#8EB573",
+		MountainIconColor:     "#ADFF2F",
+		TriangleMountainColor: "#ADFF2F",
+		TextColor:             "#DF6D74",
+		BgColor:               "#282C34",
+		BorderColor:           "#FFFFFF",
+	},
+	{
 		Name:                  "sakura",
 		TitleColor:            "#FFFFFF",
 		IconColor:             "#FFB6A1",
@@ -51,6 +61,26 @@ var Themes = []Theme{
 		TextColor:             "#D88352",
 		BgColor:               "#FCC796",
 		BorderColor:           "#D88352",
+	},
+	{
+		Name:                  "solarized",
+		TitleColor:            "#268BD2",
+		IconColor:             "#B58900",
+		MountainIconColor:     "#859900",
+		TriangleMountainColor: "#859900",
+		TextColor:             "#586E75",
+		BgColor:               "#FDF6E3",
+		BorderColor:           "#586E75",
+	},
+	{
+		Name:                  "solarized_dark",
+		TitleColor:            "#268BD2",
+		IconColor:             "#B58900",
+		MountainIconColor:     "#859900",
+		TriangleMountainColor: "#859900",
+		TextColor:             "#839496",
+		BgColor:               "#073642",
+		BorderColor:           "#839496",
 	},
 }
 
