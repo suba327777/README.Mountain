@@ -40,9 +40,9 @@ func generateMountain(count int, themeName, triangleMountainColor string) string
 			x -= 50
 			y -= 5
 			switch themeName {
-			case "default":
+			case "default", "solarized":
 				results.WriteString(generateBonusIconPath(x, y, Sun))
-			case "dark":
+			case "dark", "onedark", "solarized_dark":
 				results.WriteString(generateBonusIconPath(x, y, Star))
 			case "sakura":
 				results.WriteString(generateBonusIconPath(x, y, Sakura))
