@@ -33,6 +33,16 @@ var Themes = []Theme{
 		BorderColor:           "#FFFFFF",
 	},
 	{
+		Name:                  "onedark",
+		TitleColor:            "#E4BF7A",
+		IconColor:             "#8EB573",
+		MountainIconColor:     "#ADFF2F",
+		TriangleMountainColor: "#ADFF2F",
+		TextColor:             "#DF6D74",
+		BgColor:               "#282C34",
+		BorderColor:           "#FFFFFF",
+	},
+	{
 		Name:                  "sakura",
 		TitleColor:            "#FFFFFF",
 		IconColor:             "#FFB6A1",
