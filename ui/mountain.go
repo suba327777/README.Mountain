@@ -10,67 +10,56 @@ func generateMountain(count int, themeName, triangleMountainColor string) string
 	x := 0
 	y := 0
 
-	for i := 1; i <= count; i++ {
-		x += 20
-		if i == 8 {
-			x -= 130
-			y -= 18
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 14 {
-			x -= 110
-			y -= 15
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 19 {
-			x -= 90
-			y -= 15
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 23 {
-			x -= 70
-			y -= 15
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 26 {
-			x -= 50
-			y -= 15
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 28 {
-			x -= 30
-			y -= 15
-			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
-		} else if i == 29 {
-			x -= 50
-			y -= 5
+	adjustments := map[int]struct {
+		dx int
+		dy int
+		fn func(int, int) string
+	}{
+		8:  {dx: -130, dy: -18, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		14: {dx: -110, dy: -15, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		19: {dx: -90, dy: -15, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		23: {dx: -70, dy: -15, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		26: {dx: -50, dy: -15, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		28: {dx: -30, dy: -15, fn: func(x, y int) string { return generateTrianglePath(x, y, triangleMountainColor) }},
+		29: {dx: -50, dy: -5, fn: func(x, y int) string {
 			switch themeName {
 			case "default", "solarized":
-				results.WriteString(generateBonusIconPath(x, y, Sun))
+				return generateBonusIconPath(x, y, Sun)
 			case "dark", "onedark", "solarized_dark":
-				results.WriteString(generateBonusIconPath(x, y, Star))
+				return generateBonusIconPath(x, y, Star)
 			case "sakura":
-				results.WriteString(generateBonusIconPath(x, y, Sakura))
+				return generateBonusIconPath(x, y, Sakura)
 			case "maple":
-				results.WriteString(generateBonusIconPath(x, y, maple))
+				return generateBonusIconPath(x, y, maple)
+			default:
+				return ""
 			}
-
-		} else if i == 30 {
-			x -= 30
-			y += 20
+		}},
+		30: {dx: -30, dy: 20, fn: func(x, y int) string {
 			switch themeName {
-			case "default":
-
 			case "dark":
-				results.WriteString(generateBonusIconPath(x, y, Star))
+				return generateBonusIconPath(x, y, Star)
 			case "sakura":
-				results.WriteString(generateBonusIconPath(x, y, Sakura))
+				return generateBonusIconPath(x, y, Sakura)
 			case "maple":
-				results.WriteString(generateBonusIconPath(x, y, maple))
+				return generateBonusIconPath(x, y, maple)
+			default:
+				return ""
 			}
-		} else if i == 31 {
-			x += 30
-			y -= 30
-			results.WriteString(generateBonusIconPath(x, y, Flag))
+		}},
+		31: {dx: 30, dy: -30, fn: func(x, y int) string { return generateBonusIconPath(x, y, Flag) }},
+	}
+
+	for i := 1; i <= count; i++ {
+		x += 20
+		if adj, ok := adjustments[i]; ok {
+			x += adj.dx
+			y += adj.dy
+			results.WriteString(adj.fn(x, y))
 		} else {
 			results.WriteString(generateTrianglePath(x, y, triangleMountainColor))
 		}
-
 	}
+
 	return results.String()
 }

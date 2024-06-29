@@ -19,9 +19,7 @@
 |default|dark|sakura|maple|
 |![スクリーンショット 2024-05-13 22 48 51](https://github.com/suba327777/README.Mountain/assets/84484832/0fa16586-bbf9-4ef7-ac40-b9b92c4bb35b)|![スクリーンショット 2024-05-13 22 47 30](https://github.com/suba327777/README.Mountain/assets/84484832/9af87b66-b3de-40b1-beca-114893443bc0)|![スクリーンショット 2024-05-13 22 14 26](https://github.com/suba327777/README.Mountain/assets/84484832/9b9d8ed3-cfa8-47fe-9b2c-a363c151e029)|![スクリーンショット 2024-05-13 22 15 02](https://github.com/suba327777/README.Mountain/assets/84484832/8569962e-ceea-431a-a15c-0440f312f7be)
 |onedark|solarized|solarized_dark|
-|<img width="450" alt="スクリーンショット 0006-06-29 13 21 11" src="https://github.com/suba327777/README.Mountain/assets/84484832/303a8c3c-7404-462c-9558-64d647186946">|<img width="408" alt="スクリーンショット 0006-06-29 13 19 19" src="https://github.com/suba327777/README.Mountain/assets/84484832/829f6d6c-2f16-430d-8cad-ad0f02a06110">|<img width="400" alt="スクリーンショット 0006-06-29 13 17 06" src="https://github.com/suba327777/README.Mountain/assets/84484832/e4fc5d9a-bd91-46d1-9946-4342987e038b">|
-
-
+|<img width="780" alt="スクリーンショット 0006-06-29 14 39 43" src="https://github.com/suba327777/README.Mountain/assets/84484832/599f1500-489a-489c-a7de-7289f5e1e926">|<img width="752" alt="スクリーンショット 0006-06-29 14 37 28" src="https://github.com/suba327777/README.Mountain/assets/84484832/145426a9-d278-4f25-9c77-1cf909a804aa">|<img width="704" alt="スクリーンショット 0006-06-29 14 34 55" src="https://github.com/suba327777/README.Mountain/assets/84484832/8487159e-3f30-4763-959c-72f6dc8fb666">
 
 
 ## how to use (fpr GitHub Actions)
