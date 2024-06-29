@@ -27,14 +27,14 @@ func leftInfo(dailyCommitsMonthCount, endOfMonth int, treeIcon, climberIcon, tex
   <g>
     <g>
       <g transform="translate(5,75)">%s</g>
-      <text x="45" y="85" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit Day</text>
-      <text x="49" y="100" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Per Month</text>
-      <text x="134" y="90" font-size="12" dominant-baseline="middle" text-anchor="start"  fill="%s">%d/%d</text>
+      <text x="43" y="85" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit Day</text>
+      <text x="47" y="100" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Per Month</text>
+      <text x="131" y="93" font-size="12" dominant-baseline="middle" text-anchor="start"  fill="%s">%d/%d</text>
     </g>
     <g>
-      <g transform="translate(5,140)">%s</g> <text x="60" y="150" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Month</text>
-      <text x="55" y="165" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit</text>
-      <text x="145" y="155" font-size="12" dominant-baseline="middle" text-anchor="start"  fill="%s">%s</text>
+      <g transform="translate(5,140)">%s</g> <text x="54" y="150" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Commits</text>
+      <text x="49" y="165" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Per Month</text>
+      <text x="143" y="157" font-size="12" dominant-baseline="middle" text-anchor="start"  fill="%s">%s</text>
     </g>
   </g>
   `, treeIcon, textColor, textColor, textColor, dailyCommitsMonthCount, endOfMonth, climberIcon, textColor, textColor, textColor, formatCommitsMonthCount)
