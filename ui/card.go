@@ -22,23 +22,23 @@ func title(mountainIcon, textColor, username string) string {
     `, mountainIcon, textColor, username)
 }
 
-func leftInfo(dailyCommitsMonthCount, endOfMonth int, treeIcon, climberIcon, textColor, formatCommitsYearCount string) string {
+func leftInfo(dailyCommitsMonthCount, endOfMonth int, treeIcon, climberIcon, textColor, formatCommitsMonthCount string) string {
 	return fmt.Sprintf(`
   <g>
     <g>
       <g transform="translate(5,75)">%s</g>
-      <text x="46" y="85" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit Day</text>
-      <text x="50" y="100" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">Per Month</text>
+      <text x="46" y="85" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit Day</text>
+      <text x="50" y="100" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">Per Month</text>
       <text x="135" y="90" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">%d/%d</text>
     </g>
     <g>
-      <g transform="translate(5,140)">%s</g> <text x="40" y="150" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">Total Commits</text>
-      <text x="65" y="165" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">(2024)</text>
+      <g transform="translate(5,140)">%s</g> <text x="40" y="150" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">Month</text>
+      <text x="65" y="165" font-size="14" dominant-baseline="middle" text-anchor="start"  fill="%s">Commit</text>
       <text x="140" y="155" font-size="13" dominant-baseline="middle" text-anchor="start"  fill="%s">%s</text>
 
     </g>
   </g>
-  `, treeIcon, textColor, textColor, textColor, dailyCommitsMonthCount, endOfMonth, climberIcon, textColor, textColor, textColor, formatCommitsYearCount)
+  `, treeIcon, textColor, textColor, textColor, dailyCommitsMonthCount, endOfMonth, climberIcon, textColor, textColor, textColor, formatCommitsMonthCount)
 }
 
 func rightInfo(bgColor, borderColor, grass string) string {
@@ -56,7 +56,7 @@ func endSVG() string {
 	return `</svg>`
 }
 
-func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsYearCount int) string {
+func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsMonthCount int) string {
 	themeName := os.Getenv("THEME")
 	theme := getTheme(themeName)
 
@@ -64,12 +64,12 @@ func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMon
 	climberIcon := changeIconColor(Climber, theme.IconColor)
 	treeIcon := changeIconColor(Tree, theme.IconColor)
 	grassMountain := generateMountain(dailyCommitsSince1MonthCount, theme.Name, theme.TriangleMountainColor)
-	formatCommitsYearCount := formatNumber(commitsYearCount)
+	formatCommitsMonthCount := formatNumber(commitsMonthCount)
 
 	svg := startSVG()
 	svg += rect(theme.BgColor, theme.BorderColor)
 	svg += title(mountainIcon, theme.TitleColor, username)
-	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, treeIcon, climberIcon, theme.TextColor, formatCommitsYearCount)
+	svg += leftInfo(dailyCommitsMonthCount, endOfMonth, treeIcon, climberIcon, theme.TextColor, formatCommitsMonthCount)
 	svg += rightInfo(theme.BgColor, theme.BorderColor, grassMountain)
 	svg += endSVG()
 
