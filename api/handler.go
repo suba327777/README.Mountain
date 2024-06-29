@@ -9,7 +9,7 @@ import (
 )
 
 func MountainHandler() ([]byte, error) {
-	username := os.Getenv("USERNAME")
+	username := os.Getenv("USERNAME2")
 	if len(username) == 0 {
 		return nil, errors.New("USERNAME is not set")
 	}
@@ -32,17 +32,9 @@ func MountainHandler() ([]byte, error) {
 
 	endOfMonth := toDate.Day()
 	dailyCommitsMonthCount := dailyCommitsPeriodCount(user.DailyCommitsPeriod)
+	commitsMonthCount := commitsPeriodCount(user.DailyCommitsPeriod)
 
-	fromDate = time.Date(time.Now().Year(), 1, 1, 0, 0, 0, 0, time.UTC)
-	toDate = time.Date(time.Now().Year(), 12, 31, 23, 59, 59, 999999999, time.UTC)
-	user, err = getUserData(username, fromDate, toDate)
-	if err != nil {
-		return nil, err
-	}
-
-	commitsYearCount := commitsPeriodCount(user.DailyCommitsPeriod)
-
-	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsYearCount)
+	svg := ui.GenerateCard(username, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsMonthCount)
 
 	return []byte(svg), nil
 }
