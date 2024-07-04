@@ -32,7 +32,6 @@ func WriteSvgFile(svg []byte) error {
 }
 
 func WriteReadmeFile() error {
-
 	directory := "./mountain-output"
 	readmePath := directory + "/README.md"
 
