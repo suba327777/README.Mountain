@@ -6,10 +6,8 @@ import (
 )
 
 func startSVG() string {
-	return `
-  <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" >
-    <a xlink:href="https://google.com">
-  `
+	return fmt.Sprintf(`
+  <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" >`)
 }
 
 func rect(bgColor, borderColor string) string {
@@ -55,9 +53,7 @@ func rightInfo(bgColor, borderColor, grass string) string {
 }
 
 func endSVG() string {
-	return `
-    </a>
-  </svg>`
+	return `</svg>`
 }
 
 func GenerateCard(username string, dailyCommitsSince1MonthCount, dailyCommitsMonthCount, endOfMonth, commitsMonthCount int) string {
