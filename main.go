@@ -20,4 +20,8 @@ func main() {
 		return
 	}
 
+	err = utils.WriteReadmeFile()
+	if err != nil {
+		fmt.Printf("Error calling WriteReadmeFile: %v\n", err)
+	}
 }
