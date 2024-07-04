@@ -6,10 +6,10 @@ import (
 )
 
 func startSVG() string {
-	return fmt.Sprintf(`
+	return `
   <svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" >
     <a xlink:href="https://github.com/suba327777/README.Mountain">
-  `)
+  `
 }
 
 func rect(bgColor, borderColor string) string {
