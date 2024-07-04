@@ -52,9 +52,9 @@ func WriteReadmeFile() error {
 	showSvg := "![](./mountain.svg)\n\n"
 	usageText := "### Now you can add this to your markdown\n"
 	startCodeBlock := "```\n"
-	inCodeBlock := fmt.Sprintf(`<img src="https://raw.githubusercontent.com/%s/%s/%s/mountain-output/mountain.svg" />`, username, username, branch)
+	imageUrl := fmt.Sprintf(`<img src="https://raw.githubusercontent.com/%s/%s/%s/mountain-output/mountain.svg" />`, username, username, branch)
 	endCodeBlock := "\n```"
-	readmeContent := startReadme + showSvg + usageText + startCodeBlock + inCodeBlock + endCodeBlock
+	readmeContent := startReadme + showSvg + usageText + startCodeBlock + imageUrl + endCodeBlock
 
 	fmt.Println(readmeContent)
 
